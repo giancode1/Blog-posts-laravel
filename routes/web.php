@@ -5,8 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-    // return 'ruta home';
-});
+})->name('home');
 
 Route::get('/blog', function () {
     // simulado consultsa a db
@@ -16,12 +15,12 @@ Route::get('/blog', function () {
     ];
 
     return view('blog', ['posts' => $posts]);
-});
+})->name('blog');
 
 Route::get('/blog/{slug}', function ($slug) {
     $post = $slug;
     return view('post', ['post' => $post]);
-});
+})->name('post');
 
 
 // request : solicitud o peticion

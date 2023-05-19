@@ -5,14 +5,15 @@
 <h1>Blog - listado</h1>
 @foreach ($posts as $post)
     <p>
-        <strong>{{ $post['id'] }}</strong>
+        <strong>{{ $post->id }}</strong>
 
-        <a href="{{ route('post', $post['slug']) }}">
-            {{ $post['title'] }}
+        <a href="{{ route('post', $post->slug ) }}">
+            {{ $post->title }}
         </a>
     </p>
 @endforeach
 
+{{ $posts->links() }}
 
 @endsection
 

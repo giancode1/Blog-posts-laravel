@@ -17,7 +17,9 @@ class PageController extends Controller
         // $posts = Post::first();
         // $posts = Post::find(5);
 
-        $posts = Post::latest()->paginate();
+
+        //$posts = Post::latest()->paginate(); //ordena por fecha: created_at
+        $posts = Post::oldest('id')->paginate(); //ordenados por id ascendente
 
         // dd($posts);
 

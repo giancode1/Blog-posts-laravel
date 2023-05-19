@@ -16,6 +16,12 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
 
+            //solo positivos enteros
+            $table->unsignedBigInteger('user_id');
+            //necesito otra linea para crear esta relación:
+            //campo foráneo es user_id hace referencia a id de tabla users
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('body');

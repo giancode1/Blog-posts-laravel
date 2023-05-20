@@ -22,12 +22,13 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'slug' => 'required|unique:posts,slug', //unico en la tabla posts especificamente en campo slug
             'body' => 'required',
         ]);
 
         $post = $request->user()->posts()->create([
-            'title' => $title = $request->title,
-            'slug' => Str::slug($title),
+            'title' => $request->title,
+            'slug' => $request->slug,
             'body' => $request->body,
         ]);
         return redirect()->route('posts.index', $post);
@@ -40,12 +41,13 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'slug' => 'required|unique:posts,slug,'.$post->id, //revisa el resto de registro pero ignora el mismo
             'body' => 'required',
         ]);
 
         $post->update([
-            'title' => $title = $request->title,
-            'slug' => Str::slug($title),
+            'title' => $request->title,
+            'slug' => $request->slug,
             'body' => $request->body,
         ]);
         return redirect()->route('posts.index', $post);

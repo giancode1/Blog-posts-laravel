@@ -1,5 +1,5 @@
 @csrf
-
+{{-- title --}}
 <label for="title" class="block text-sm font-bold mb-2">Título</label>
 <span class="text-xs text-red-600">
     @error('title')
@@ -13,6 +13,21 @@
     class="border-gray-200 text-gray-700 w-full mb-4 rounded"
 >
 
+{{-- slug --}}
+<label for="slsug" class="block text-sm font-bold mb-2">Slug</label>
+<span class="text-xs text-red-600">
+    @error('slug')
+        {{ $message }}
+    @enderror
+</span>
+<input
+    type="text"
+    name="slug"
+    value="{{ old('slug', $post->slug)  }}"
+    class="border-gray-200 text-gray-700 w-full mb-4 rounded"
+>
+
+{{-- body --}}
 <label for="body" class="block text-sm font-bold mb-2">Contenido</label>
 <span class="text-xs text-red-600">
     @error('body')

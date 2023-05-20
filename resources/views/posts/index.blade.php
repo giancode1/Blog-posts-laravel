@@ -11,16 +11,29 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
                     <table class="mb-4">
+                        <tr>
+                            <td class="text-center font-bold">Título</td>
+                            <td class="text-center font-bold" colspan="2">Acciones</td>
+                        </tr>
                         @foreach ($posts as $post)
                             <tr class="border-n border-gray-200 text-sm">
                                 <td class="px-6 py-4">
                                     {{ $post->title }}
                                 </td>
-                                <td class="px-6 py-4">
-                                    <a href="" class="text-indigo-600">Editar</a>
+                                <td class="">
+                                    <a href="" class="bg-green-700 text-white rounded px-4 py-2">Editar</a>
                                 </td>
                                 <td class="px-6 py-4">
-                                    Eliminar
+                                    <form action="{{ route('posts.destroy', $post) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input
+                                            type="submit"
+                                            value="Eliminar"
+                                            class="bg-red-500 text-white rounded px-4 py-2"
+                                            onclick="return confirm('Desea Eliminar?')"
+                                        >
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

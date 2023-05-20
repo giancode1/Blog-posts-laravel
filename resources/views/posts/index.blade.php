@@ -6,7 +6,11 @@
     </x-slot>
 
     <div class="py-12">
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <a href="{{ route('posts.create') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2">
+                Crear
+            </a>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
@@ -21,7 +25,9 @@
                                     {{ $post->title }}
                                 </td>
                                 <td class="">
-                                    <a href="" class="bg-green-700 text-white rounded px-4 py-2">Editar</a>
+                                    <a href="{{ route('posts.edit', $post) }}" class="bg-green-600 hover:bg-green-700 text-white rounded px-4 py-2">
+                                        Editar
+                                    </a>
                                 </td>
                                 <td class="px-6 py-4">
                                     <form action="{{ route('posts.destroy', $post) }}" method="POST">
@@ -30,7 +36,7 @@
                                         <input
                                             type="submit"
                                             value="Eliminar"
-                                            class="bg-red-500 text-white rounded px-4 py-2"
+                                            class="bg-red-500 hover:bg-red-600 text-white rounded px-4 py-2 cursor-pointer"
                                             onclick="return confirm('Desea Eliminar?')"
                                         >
                                     </form>

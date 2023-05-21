@@ -14,10 +14,16 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <body class="font-sans antialiased" x-data="{ darkMode: false }" x-init="
+    if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      localStorage.setItem('darkMode', JSON.stringify(true));
+    }
+    darkMode = JSON.parse(localStorage.getItem('darkMode'));
+    $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" x-cloak>
 
-            <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+    <div x-bind:class="{'dark' : darkMode === true}" class="min-h-screen bg-gray-100">
+
+            <header class="max-w-7xl mx-auto dark:bg-gray-800 px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
                 <div class="flex items-center flex-grow gap-4">
                     <a href="{{ route('home') }}">
                         <img src="{{ asset('images/logo3.png') }}" class="h-12">
@@ -31,6 +37,11 @@
                     </form>
                 </div>
 
+                {{-- toggle theme --}}
+                <x-toggle-theme></x-toggle-theme>
+                {{-- toggle theme --}}
+
+
                 @if (Route::has('login'))
                 <div class="top-0 right-0 px-6 py-4 sm:block">
                     @auth
@@ -43,7 +54,7 @@
 
             </header>
 
-            <main>
+            <main class="bg-gray-100 dark:bg-gray-800">
                 @yield('content')
             </main>
 

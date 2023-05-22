@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
-        $posts = Post::oldest('id')->paginate();
+        $search = $request->search;
+        $posts = Post::where('title', 'LIKE', "%{$search}%")
+            ->latest()
+            ->paginate();
+        // $posts = Post::oldest('id')->paginate();
         return view('home', ['posts' => $posts]);
     }
     public function post(Post $post)

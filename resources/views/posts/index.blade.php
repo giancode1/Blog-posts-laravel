@@ -1,23 +1,23 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Posts') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Posts') }}
+            </h2>
             <a href="{{ route('posts.create') }}"
-                class="inline-block mx-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2">
+                class="inline-block mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Crear
             </a>
+        </div>
+    </x-slot>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <div class="bg-white dark:bg-gray-800">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <table class="table-auto rounded-lg dark:bg-gray-900 border border-gray-400 dark:border-gray-700 mb-4 ">
+                        <table class="table-auto mx-auto rounded-lg dark:bg-gray-900 border border-gray-400 dark:border-gray-700 mb-4 ">
                             <thead class="bg-gray-70 dark:bg-gray-800">
                                 <tr>
                                     <td class="text-center font-medium pt-3">Título</td>
@@ -51,15 +51,9 @@
                         </table>
 
                         {{-- {{ dd($posts->links()) }} --}}
-
-
                         {{ $posts->links('pagination::tailwind') }}
-
-
-
-                    </>
                 </div>
             </div>
         </div>
-    </div>
+
 </x-app-layout>

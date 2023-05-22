@@ -13,6 +13,11 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+            [x-cloak] {
+                display: none;
+            }
+        </style>
     </head>
     <body class="font-sans antialiased" x-data="{ darkMode: false }" x-init="
     if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -21,18 +26,18 @@
     darkMode = JSON.parse(localStorage.getItem('darkMode'));
     $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" x-cloak>
 
-    <div x-bind:class="{'dark' : darkMode === true}" class="min-h-screen bg-gray-100">
+    <div x-bind:class="{'dark' : darkMode === true}" class="min-h-screen bg-gray-100 dark:bg-gray-800">
 
             <header class="max-w-7xl mx-auto dark:bg-gray-800 px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
                 <div class="flex items-center flex-grow gap-4">
                     <a href="{{ route('home') }}">
                         <img src="{{ asset('images/logo3.png') }}" class="h-12">
                     </a>
-                    <form action="" method="GET">
+                    <form action="{{ route('home') }}" class="flex-grow" method="GET">
                         <input
                             type="text" name="search" placeholder="Buscar"
-                            value=""
-                            class="border bg-inherit border-gray-600 text-gray-400 rounded py-2 px-4 w-1/2"
+                            value="{{ request('search') }}"
+                            class="border bg-inherit border-gray-500  text-gray-600 dark:text-gray-300 rounded py-2 px-4 w-1/2"
                         >
                     </form>
                 </div>
